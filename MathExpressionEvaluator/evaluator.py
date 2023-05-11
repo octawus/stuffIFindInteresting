@@ -1,24 +1,5 @@
 import re
 
-#def do_sign_stuff(expression):
-#    pass 
-#
-#def to_reverse_polish_notation(expression):
-#    output = []
-#    operator = []
-#    for element in expression:
-#        if isnumerical(element):
-#            print("Add token {} to output".format(element))
-#            output.append(element)
-#        elif(element == "+" or element == "-"):
-#            operator.append()
-#        elif(element == "/" or element == "*")
-#            if(operator.head())
-#            
-#            
-#            
-#    return rpn_expression
-
 def evaluate_rpn(expression):
     print("initial expresion : {}".format(expression))
     stack = []
