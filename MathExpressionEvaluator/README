@@ -1,0 +1,6 @@
+Just use [eval()](https://docs.python.org/3/library/functions.html#eval) you dummy!!!
+
+Yeah... the idea for this project comes from [CodeWars](https://www.codewars.com/) more specifically [this Kata](https://www.codewars.com/kata/52a78825cdfc2cfc87000005) so basically [eval()](https://docs.python.org/3/library/functions.html#eval) would defeat the purpose of the Kata plus 
+would eliminate any need for learning about the following...
+
+Key concepts: Shunting-yard algorithm, reverse polish notation (RPN), RPN evaluation, unary operators, order of precedence
