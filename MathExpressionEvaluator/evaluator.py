@@ -1,13 +1,13 @@
 import re
 
 def evaluate_rpn(expression):
-    print("initial expresion : {}".format(expression))
+    #print("initial expresion : {}".format(expression))
     stack = []
     for token in expression:
-        print("evaluating {}".format(token))
+        #print("evaluating {}".format(token))
         if token.isnumeric():
             stack.append(float(token))
-            print("stack : {}".format(stack))
+            #print("stack : {}".format(stack))
         elif len(token) > 1 and "-" in token:
             stack.append(float(token.lstrip("-")) * -1)
         else:
@@ -22,7 +22,7 @@ def evaluate_rpn(expression):
             elif token == '/':
                 stack.append(a / b)
     solution = stack.pop()
-    print("solution: {}".format(solution))
+    #print("solution: {}".format(solution))
     if solution.is_integer():
         return int(solution)
     else:
@@ -58,6 +58,9 @@ def calc(expression):
                     #print("first output: {}".format(output))
                     #print("first stack: {}".format(stack))
                 elif tokens[i+1].isdigit() and tokens[i-1].isdigit():
+                    while stack and stack[-1] in precedence and precedence[stack[-1]] > precedence[tokens[i]]:
+                        # take top of stack and put into output
+                        output.append(stack.pop())
                     output.append('-{}'.format(tokens[i+1]))
                     stack.append('+')
                     i += 2
@@ -105,8 +108,9 @@ def calc(expression):
             i += 1
     # Pop any remaining operators from the stack and add them to the output queue
     while stack:
-        print("final output: {}".format(output))
-        print("final stack: {}".format(stack))
+        #print("final output: {}".format(output))
+        #print("final stack: {}".format(stack))
         output.append(stack.pop())
         i += 1
+    print(output)
     return evaluate_rpn(output)
