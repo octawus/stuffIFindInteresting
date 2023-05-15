@@ -1,6 +1,6 @@
 Just use [eval()](https://docs.python.org/3/library/functions.html#eval) you dummy!!!
 
-Yeah... the idea for this project comes from [CodeWars](https://www.codewars.com/) more specifically [this Kata](https://www.codewars.com/kata/52a78825cdfc2cfc87000005) so basically [eval()](https://docs.python.org/3/library/functions.html#eval) would defeat the purpose of the Kata (Oh by the way eval is forbidden by the rules of the creator) and would eliminate any need for learning about the following...
+Yeah... the idea for this project comes from [CodeWars](https://www.codewars.com/) more specifically [this Kata](https://www.codewars.com/kata/52a78825cdfc2cfc87000005) so basically [eval()](https://docs.python.org/3/library/functions.html#eval) would defeat the purpose of the Kata (Oh by the way eval is forbidden by the rules of the creator) and would eliminate any need to learn about the following...
 
 Key concepts: Shunting-yard algorithm, reverse polish notation (RPN), RPN evaluation, unary operators, order of precedence
 
@@ -8,6 +8,15 @@ Basically what I wanted to do is make a convertor that changes infix to RPN in s
 
 Preliminary investigation of the [shunting-yard algorithm](https://en.wikipedia.org/wiki/Shunting_yard_algorithm) gave me a basic idea of what i wanted to achieve, but that algorithm did not take into account the unary "-" operator which the exercise requires.
 
-So to comply with my self impose restriction of making an output easily readable by a "standard" RPN evaluator I decided to convert negative numbers into "number*-1" (Because * is a common operation for a RPN evaluator). Also, to not have to deal with finding out what each minus will represent during the evaluation of the RPN, I decided that all subtraction will be converted to an addition with a negative number so that the "-" is in the negative number token. After that I have tried to resolve the corner cases that appeared by obliterating an otherwise perfect shunting-yard algorithm with this nonsense.
+So to comply with my self imposed restriction of making an output easily readable by a "standard" RPN evaluator I decided to convert negative numbers into "number*-1" (Because * is a common operation for a RPN evaluator). Also, to not have to deal with finding out what each minus will represent during the evaluation of the RPN, I decided that all subtraction will be converted to an addition with a negative number so that the "-" is in the negative number token. After that I have tried to resolve the corner cases that appeared by obliterating an otherwise perfect shunting-yard algorithm with this nonsense.
 
 Also during this investigation some asking has been done to chatGPT (It is not capable yet of generating an answer completely by itself tho). In an attempt to blame myself for it I started [this course](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) (which i have not yet completed T.T) but either by chatGPT or my incompetence an answer has not yet been generated.
+
+Update as of 15/5/2023:
+Finally got a definitive solution!!!!
+Negative number no longer compute as "number*-1" instead I tokenize them as a single unit by improving the regex.
+Also, "-" and "(" are tokenized together when not split by a whitespace, because in this case the whole content of the parenthesis has to be
+multiplied by -1 at the end, so "-(" is used to say "add -1 to the stack and remember to multiply" so when the ")" is found a "*" is added to
+complete the evaluation.
+The subtraction operation has also been reintroduced in the evaluation do to our new ability to take negative numbers and "-(" as individual tokens.
+The test that are defined in the "test.py" file are just the basic ones from the [Kata](https://www.codewars.com/kata/52a78825cdfc2cfc87000005) and some of the problematic ones from the randomized test set (some 300 tests).
