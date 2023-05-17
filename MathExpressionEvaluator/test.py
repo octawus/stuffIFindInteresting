@@ -1,4 +1,4 @@
-from forreal import calc
+from evaluator import calc
 
 def test ():
     cases = (
@@ -26,6 +26,7 @@ def test ():
         try:
             no_of_tests += 1
             assert my_solution == case[1], f"FAILED!!!!!!!!!!: Expression {case[0]} returned {my_solution} instead of {case[1]}"
+            print("{} = {} PASS!".format(my_solution, case[1]))
             no_of_successful_tests += 1
         except AssertionError as e:
             print(e)
